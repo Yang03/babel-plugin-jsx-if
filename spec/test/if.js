@@ -1,36 +1,36 @@
-var chai = require("chai");
-var spies = require("chai-spies");
-var util = require("../testUtil");
+var chai = require("chai")
+var spies = require("chai-spies")
+var util = require("../testUtil")
 
-chai.use(spies);
-var expect = chai.expect;
+chai.use(spies)
+var expect = chai.expect
 
 
 describe("requiring in component with empty if", function() {
-  var Fixture = require("../fixtures/if/if-empty.jsx");
+  var Fixture = require("../fixtures/if/if-empty.jsx")
 
   it("should render nothing when condition true, but if is empty", function() {
-    var rendered = util.render(Fixture);
-    expect(rendered).to.match(/^<div[^>]*><\/div>$/);
+    var rendered = util.render(Fixture)
+    expect(rendered).to.match(/^<div[^>]*><\/div>$/)
   });
 });
 
-// describe("requiring in component with if", function() {
-//   var IfWithoutElse = require("../fixtures/if/if.jsx");
+describe("requiring in component with if", function() {
+  var IfWithoutElse = require("../fixtures/if/if.jsx")
 
-//   it("should render if block when condition true", function() {
-//     var rendered = util.render(IfWithoutElse, {condition: "blah"});
-//     expect(rendered).to.contain("<span");
-//     expect(rendered).to.contain("IfBlock");
-//     expect(rendered).not.to.contain("ElseBlock");
-//   });
+  it("should render if block when condition true", function() {
+    var rendered = util.render(IfWithoutElse, {condition: "blah"})
+    expect(rendered).to.contain("<span")
+    expect(rendered).to.contain("IfBlock")
+    expect(rendered).not.to.contain("ElseBlock")
+  })
 
-//   it("should render nothing when condition false", function() {
-//     var rendered = util.render(IfWithoutElse);
-//     expect(rendered).not.to.contain("<span");
-//     expect(rendered).not.to.contain("IfBlock");
-//   });
-// });
+  it("should render nothing when condition false", function() {
+    var rendered = util.render(IfWithoutElse)
+    expect(rendered).not.to.contain("<span")
+    expect(rendered).not.to.contain("IfBlock")
+  })
+})
 
 // describe("requiring in component with if/else", function() {
 //   var IfWithElse = require("../fixtures/if/if-with-else.jsx");

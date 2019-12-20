@@ -10,7 +10,13 @@ var ELEMENTS = {
 
 var ATTRIBUTES = {
   CONDITION: "condition"
-};
+}
+
+var TYPES = {
+  ELEMENT: "JSXElement",
+  EXPRESSION_CONTAINER: "JSXExpressionContainer",
+  STRING_LITERAL: "StringLiteral"
+}
 
 function getAttributeMap(node) {
   var attributes = node.openingElement.attributes.reduce(function (result, attr) {
@@ -38,6 +44,10 @@ function getConditionExpression(node, errorInfos) {
   return condition.value.expression
 }
 
+function getTagName(node) {
+  return node.openingElement.name.name
+}
+
 function isTag(node, tagName) {
   return node.type === TYPES.ELEMENT && getTagName(node) === tagName
 }
@@ -58,7 +68,7 @@ function addKeyAttribute(babelTypes, node, keyValue) {
   }
 }
 
-function getSanitizedExpressionForContent(babelTypes, blocks, key) {
+function getSanitizedExpressionForContent(babelTypes, blocks, keyPrefix) {
   if (!blocks.length) {
     return babelTypes.NullLiteral();
   } else if (blocks.length === 1) {
